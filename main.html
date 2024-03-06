@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>project</title>
+	<link rel="stylesheet" href="styles.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const increaseFontButton = document.getElementById('increase-font');
+    const decreaseFontButton = document.getElementById('decrease-font');
+
+    increaseFontButton.addEventListener('click', function() {
+        changeFontSize(2);
+    });
+
+    decreaseFontButton.addEventListener('click', function() {
+        changeFontSize(-2);
+    });
+
+    function changeFontSize(changeAmount) {
+        const currentFontSize = parseInt(getComputedStyle(document.body).fontSize);
+        document.body.style.fontSize = (currentFontSize + changeAmount) + 'px';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopButton = document.getElementById('scroll-to-top');
+
+    scrollToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollToBottomLink = document.getElementById('scroll-to-bottom');
+
+    scrollToBottomLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor link
+        scrollToBottom();
+    });
+
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+});
+
+
+ </script>
+</head>
+<body>
+    <nav>
+        <div class="topnav" >
+            <a class="active" href="main.html">About us</a>
+            <a href="#contact" id="scroll-to-bottom">Contact</a>
+            <a href="timetable.html">Timetable</a>
+            <h1>NIS Web Development club</h1>
+            <a href="index.html" style="float:right">Register</a>
+            <a href="profile.php" style="float:right;">Your profile</a>
+   <a class="button" id="increase-font" style="background-color: #04AA6D;;margin-left:8%">Increase Font Size</a>
+   <a class="button" id="decrease-font" style="background-color: #04AA6D;margin-left:2px">Decrease Font Size</a>
+        </div>
+    </nav>
+    <h2 style="margin-left: 40%">NIS club site</h2>
+    <hr>
+    <div class="container" style="margin-left: 90px">
+        <div class="box" >
+            <h2 style="font-size:54px; font-weight: bold;">Web Development Club at NIS</h2>
+            <p>Masterclass of web development</p>
+        </div>
+        <div class="box" style="font-size: 24px;">
+            <p>The Web Development Club at NIS is a dynamic and inclusive community of students passionate about exploring and mastering the art of web development. This club provides an excellent platform for students to enhance their coding skills, collaborate on projects, and stay updated with the latest trends in web technologies.</p>
+        </div>
+    </div>
+ <hr><br>
+ <iframe width="920" height="560" src="https://www.youtube.com/embed/a6pLdPnDvb8" frameborder="1" allowfullscreen style="margin-left: 10%;"></iframe>
+ <hr><br>
+ <section id="contacts">
+  <h2 style="margin-left:43%">Contact Us</h2>
+  <ul class="social-icons">
+   <li><a href="mailto:sagatbeutima@gmail.com"><i class="fas fa-envelope"></i></a></li>
+   <li><a href="https://www.instagram.com/timasagatbek/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+   <li><a href="https://www.linkedin.com/in/temirlan-sagatbek-06298628a/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+   <!-- Add more social network icons as needed -->
+  </ul>
+ </section>
+ <hr><br> 
+ <a class="button" id="scroll-to-top" style="margin-left:42%">Scroll to Top</a>
+
+<style>
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float:left;	
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  margin-top:15px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+
+}
+h1{
+	color: white;
+	font-size:17px;	
+	float:left;
+ 	padding: 14px 16px;
+}	
+.container {
+    display: flex;
+  }
+
+  .box {
+    flex: 1;
+    padding: 20px;
+		}
+ .button {
+  display: inline-block; /* Make the button behave like a block element */
+  padding: 10px 20px; /* Add padding */
+  font-size: 16px; /* Set font size */
+  font-weight: bold; /* Set font weight to bold */
+  text-align: center; /* Center align text */
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Set text color */
+  background-color: #007bff; /* Set background color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Style button on hover */
+.button:hover {
+  background-color: #0056b3; /* Darken the background color on hover */
+}
+.social-icons {
+    list-style-type: none;
+    padding: 0;
+ margin-left:42%;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-right: 30px; /* Adjust spacing between icons */
+}
+.social-icons i{
+ font-size:30px;
+}
+	</style>
+</body>

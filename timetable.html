@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Timetable</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .searchInput {
+    margin-left: 5px;
+  width: 200px; /* Set the width of the input field */
+  padding: 10px; /* Add padding for better visual appearance */
+  border: 1px solid #ccc; /* Add a border around the input */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  outline: none; /* Remove the default focus outline */
+}
+table {
+  width: 100%; /* Make the table span the entire width of its container */
+  border-collapse: collapse; /* Collapse borders to prevent double borders */
+  font-family: Arial, sans-serif; /* Set font family */
+  margin-bottom:20px;
+}
+
+/* Style table headers */
+th {
+  background-color: #f2f2f2; /* Set background color */
+  color: #333; /* Set text color */
+  padding: 8px; /* Add padding */
+  text-align: center; /* Align text to the left */
+  border-bottom: 1px solid #ddd; /* Add bottom border */
+    cursor:pointer;
+}
+
+/* Style table rows */
+tr {
+  background-color: #fff; /* Set background color */
+}
+
+/* Style alternating rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Set background color for even rows */
+}
+
+/* Style table cells */
+td {
+  padding: 8px; /* Add padding */
+  border-bottom: 1px solid #ddd; /* Add bottom border */
+}
+
+/* Style hover effect on rows */
+tr:hover {
+  background-color: #ddd; /* Change background color on hover */
+}
+/* Style the button */
+ .button {
+  display: inline-block; /* Make the button behave like a block element */
+  padding: 10px 20px; /* Add padding */
+  font-size: 16px; /* Set font size */
+  font-weight: bold; /* Set font weight to bold */
+  text-align: center; /* Center align text */
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Set text color */
+  background-color: #007bff; /* Set background color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  
+}
+
+/* Style button on hover */
+.button:hover {
+  background-color: #0056b3; /* Darken the background color on hover */
+}
+</style>
+</head>
+<body>
+  <h1>School Timetable</h1>
+  <label style="margin-left: 30%;">Search by time:</label>
+  <input type="text" id="searchInput" class="searchInput" placeholder="Search...">
+  <table id='timetable'>
+  	<thead>
+    	<tr>
+      		<th onclick="sortTable(0)">Time</th>
+      		<th onclick="sortTable(1)">Monday</th>
+      		<th onclick="sortTable(2)">Tuesday</th>
+      		<th onclick="sortTable(3)">Wednesday</th>
+      		<th onclick="sortTable(4)">Thursday</th>
+      		<th onclick="sortTable(5)">Friday</th>
+      		<th onclick="sortTable(6)">class</th>
+    	</tr>
+	</thead>
+	<tbody>
+    <tr>
+      <td>15:00 - 15:40</td>
+      <td>No lesson</td>
+      <td>WebDev</td>
+      <td>No lesson</td>
+      <td>No lesson</td>
+      <td>WebDev</td>
+      <td>341</td>
+    </tr>
+
+    <tr>
+      <td>15:45 - 16:25</td>
+      <td>WebDev</td>
+      <td>No lesson	</td>
+      <td>No lesson</td>
+      <td>No lesson</td>
+      <td>No lesson</td>
+      <td>315</td>
+    </tr>
+    <tr>
+      <td>16:30 - 17:10</td>
+      <td>No lesson</td>
+      <td>No lesson</td>
+      <td>WebDev</td>
+      <td>WebDev</td>
+      <td>No lesson</td>
+      <td>123</td>
+    </tr>
+	</tbody>
+    <!-- Add more rows for other hours -->
+  </table>
+  <a href="main.html" class="button">Main page</a>
+  <script>
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("timetable");
+      switching = true;
+      dir = "asc"; 
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("td")[n];
+          y = rows[i + 1].getElementsByTagName("td")[n];
+          if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              shouldSwitch= true;
+              break;
+            }
+          } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              shouldSwitch= true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount ++; 
+        } else {
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("timetable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0]; // Assuming time is in first column
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

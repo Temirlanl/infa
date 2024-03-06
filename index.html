@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form action="registration.php" method="post">
+        <div class="container">
+            <h1>Register</h1>
+            <hr>
+
+            <input type="text" placeholder="FirstName" name="firstname" id="FirstName" required>
+
+            <input type="text" placeholder="SecondName" name="secondname" id="SecondName" required>
+
+            <input type="text" placeholder="Phone" name="phone" id="phone" required>
+
+            <input type="text" placeholder="class" name="class" id="class" required>
+
+            <input type="password" placeholder="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+
+            <input type="password" placeholder="Confirm Password" id="confirm_password" onkeyup="checkPassword()" required>
+            
+            <span id="message"></span> <!-- This will display the password confirmation message -->
+            
+            <hr>
+            <button type="submit" class="registerbtn" name="registerSubmit">Registration</button>
+        </div>
+
+        <div class="container signin">
+            <p><a href="login.html">Login Here</a></p>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        var checkPassword = function() {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm_password').value;
+            var message = document.getElementById('message');
+
+            if (password === confirmPassword) {
+                message.style.color = 'green';
+                message.innerHTML = 'Password matching';
+            } else {
+                message.style.color = 'red';
+                message.innerHTML = 'Password not matching';
+            }
+        }
+    </script>
+</body>
+</html>
